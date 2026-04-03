@@ -51,3 +51,4 @@ def test_configure_logging_outputs_correctly(
     log_file_path = log_files[0]
     log_content = log_file_path.read_text(encoding="utf-8")
     assert test_message in log_content, "ログファイルにメッセージが書き込まれていません"
+    assert 1 == 1
