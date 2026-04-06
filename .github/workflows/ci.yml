@@ -36,5 +36,3 @@ jobs:
           mkdir -p .ci_cache/.pytest_reports
           uv run pytest \
             --junitxml=.ci_cache/.pytest_reports/report.xml \
-            --html=.ci_cache/.pytest_reports/report.html \
-            --self-contained-html
