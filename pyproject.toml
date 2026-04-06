@@ -19,22 +19,29 @@ build-backend = "uv_build"
 [dependency-groups]
 dev = [
     "mypy>=1.20.0",
+    "pre-commit>=4.5.1",
     "pytest>=9.0.2",
     "ruff>=0.15.8",
 ]
 
 [tool.ruff]
 cache-dir = ".ci_cache/.ruff_cache"
-target-version = "py314"
-line-length = 70
+target-version = "py312"
+line-length = 80
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
 ignore = ["E501"]
-fixable = ["ALL"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["src"]
+force-single-line = false
+lines-after-imports = 2
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+order-by-type = true
+known-first-party = ["snklogs"]
 
 [tool.mypy]
 cache_dir = ".ci_cache/.mypy_cache"

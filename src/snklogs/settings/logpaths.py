@@ -1,6 +1,7 @@
 from datetime import datetime
 from pathlib import Path
 
+
 DIR_NAME = "logs"
 FILE_NAME_OF_BASE = "app.log"
 
@@ -51,9 +52,7 @@ def _ensure_dirpath(root_path: Path, dirname: str) -> Path:
         raise ValueError(f"OSErrorが発生しました: {dirname}") from e
 
     except RuntimeError as e:
-        raise ValueError(
-            f"RuntimeError が発生しました: {dirname}"
-        ) from e
+        raise ValueError(f"RuntimeError が発生しました: {dirname}") from e
 
     dirpath.mkdir(parents=True, exist_ok=True)
 

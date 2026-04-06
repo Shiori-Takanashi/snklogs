@@ -1,6 +1,7 @@
 import logging
 from typing import Literal
 
+
 LogLevelStr = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
 
 STREAM_LEVEL = "INFO"

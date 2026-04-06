@@ -1,6 +1,7 @@
 from logging import FileHandler, Logger, StreamHandler
 from pathlib import Path
 
+
 SH_NAME = "stream-h"
 FH_NAME = "file-h"
 
@@ -10,9 +11,7 @@ def build_stream_handler(
 ) -> StreamHandler:
     target_handlers = []
     for h in logger.handlers:
-        if (getattr(h, "name", None) == sh_name) and (
-            type(h) is StreamHandler
-        ):
+        if (getattr(h, "name", None) == sh_name) and (type(h) is StreamHandler):
             target_handlers.append(h)
 
     for h in target_handlers:
@@ -29,9 +28,7 @@ def build_file_handler(
 ) -> FileHandler:
     target_handlers = []
     for h in logger.handlers:
-        if (getattr(h, "name", None) == fh_name) and (
-            type(h) is FileHandler
-        ):
+        if (getattr(h, "name", None) == fh_name) and (type(h) is FileHandler):
             target_handlers.append(h)
 
     for h in target_handlers:

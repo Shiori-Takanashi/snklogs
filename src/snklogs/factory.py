@@ -1,9 +1,6 @@
 import logging
 
-from .core.formatters import (
-    build_file_formatter,
-    build_stream_formatter,
-)
+from .core.formatters import build_file_formatter, build_stream_formatter
 from .core.handlers import build_file_handler, build_stream_handler
 from .core.levels import build_file_level, build_stream_level
 from .settings.logpaths import build_filepath
