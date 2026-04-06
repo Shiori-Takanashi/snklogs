@@ -31,5 +31,10 @@ jobs:
       - name: Type check (mypy)
         run: uv run mypy --ignore-missing-imports src tests
 
-      - name: Run tests (pytest)
-        run: uv run pytest
+      - name: Run tests and generate reports
+        run: |
+          mkdir -p .ci_cache/.pytest_reports
+          uv run pytest \
+            --junitxml=.ci_cache/.pytest_reports/report.xml \
+            --html=.ci_cache/.pytest_reports/report.html \
+            --self-contained-html
