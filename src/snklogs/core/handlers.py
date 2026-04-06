@@ -1,5 +1,6 @@
 from logging import FileHandler, Logger, StreamHandler
 from pathlib import Path
+from typing import TextIO
 
 
 SH_NAME = "stream-h"
@@ -8,7 +9,7 @@ FH_NAME = "file-h"
 
 def build_stream_handler(
     logger: Logger, sh_name: str = SH_NAME
-) -> StreamHandler:
+) -> StreamHandler[TextIO]:
     target_handlers = []
     for h in logger.handlers:
         if (getattr(h, "name", None) == sh_name) and (type(h) is StreamHandler):
@@ -20,6 +21,7 @@ def build_stream_handler(
 
     sh = StreamHandler()
     sh.set_name(sh_name)
+
     return sh
 
 

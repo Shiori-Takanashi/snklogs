@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -9,12 +10,12 @@ from snklogs.factory import configure_logging
 def test_configure_logging_outputs_correctly(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    capsys: pytest.CaptureFixture,  # caplog から capsys に変更
-):
+    capsys: pytest.CaptureFixture[str],
+) -> None:
     # -------------------------------------------------------------------------
     # 1. 準備 (Arrange)
     # -------------------------------------------------------------------------
-    def mock_find_project_root(*args, **kwargs):
+    def mock_find_project_root(*args: Any, **kwargs: Any) -> Path:
         return tmp_path
 
     monkeypatch.setattr(
