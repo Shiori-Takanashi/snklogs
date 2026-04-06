@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+
 import pytest
 
 from snklogs.factory import configure_logging
@@ -17,7 +18,8 @@ def test_configure_logging_outputs_correctly(
         return tmp_path
 
     monkeypatch.setattr(
-        "snklogs.settings.logpaths.find_project_root", mock_find_project_root
+        "snklogs.settings.logpaths.find_project_root",
+        mock_find_project_root,
     )
 
     logger_name = "test_logger"
@@ -39,16 +41,22 @@ def test_configure_logging_outputs_correctly(
     captured = capsys.readouterr()
 
     # StreamHandlerはデフォルトで sys.stderr に出力するため、captured.err を確認する
-    assert test_message in captured.err, "コンソールにメッセージが出力されていません"
+    assert test_message in captured.err, (
+        "コンソールにメッセージが出力されていません"
+    )
 
     # [検証B: ファイル出力の検証]
     log_dir = tmp_path / "logs"
     assert log_dir.exists(), "logsディレクトリが作成されていません"
 
     log_files = list(log_dir.glob("*.log"))
-    assert len(log_files) == 1, "ログファイルが正しく作成されていません"
+    assert len(log_files) == 1, (
+        "ログファイルが正しく作成されていません"
+    )
 
     log_file_path = log_files[0]
     log_content = log_file_path.read_text(encoding="utf-8")
-    assert test_message in log_content, "ログファイルにメッセージが書き込まれていません"
+    assert test_message in log_content, (
+        "ログファイルにメッセージが書き込まれていません"
+    )
     assert 1 == 1

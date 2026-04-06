@@ -3,9 +3,9 @@ __pycache__/
 *.py[oc]
 build/
 dist/
-wheels/
+wheels
 *.egg-info
-.mypy_cache/
+.mypy_cache
 
 # Test and coverage outputs
 .pytest_cache/
@@ -23,7 +23,8 @@ htmlcov/
 .python-version
 
 # Runtime logs
+logs/
 logs/*.log
-
-.docs
-.tree
+.ci_cache
+.docs/
+.tree/

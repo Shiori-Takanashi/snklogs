@@ -1,12 +1,7 @@
 import logging
+from typing import Literal
 
-DEFAULT_MAP = {
-    "DEBUG": logging.DEBUG,
-    "INFO": logging.INFO,
-    "WARNING": logging.WARNING,
-    "ERROR": logging.ERROR,
-    "CRITICAL": logging.CRITICAL,
-}
+LogLevelStr = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
 
 STREAM_LEVEL = "INFO"
 FILE_LEVEL = "DEBUG"
@@ -21,8 +16,10 @@ def build_file_level(level_name: str = FILE_LEVEL) -> int:
 
 
 def _resolve_level_name(level_name: str) -> int:
-    level_name = level_name.upper()
-    try:
-        return DEFAULT_MAP[level_name]
-    except KeyError:
-        raise ValueError(f"不正: {level_name}")
+    upper_name = level_name.upper()
+    level = logging.getLevelNamesMapping().get(upper_name)
+
+    if level is None:
+        raise ValueError(f"不正なログレベル名です: {level_name}")
+
+    return level

@@ -22,3 +22,32 @@ dev = [
     "pytest>=9.0.2",
     "ruff>=0.15.8",
 ]
+
+[tool.ruff]
+cache-dir = ".ci_cache/.ruff_cache"
+target-version = "py314"
+line-length = 70
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
+fixable = ["ALL"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+
+[tool.mypy]
+cache_dir = ".ci_cache/.mypy_cache"
+files = ["src", "tests"]
+warn_return_any = true
+warn_unused_configs = true
+check_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+cache_dir = ".ci_cache/.pytest_cache"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra --strict-markers --duration=5"
+log_cli = true
+log_cli_level = "INFO"

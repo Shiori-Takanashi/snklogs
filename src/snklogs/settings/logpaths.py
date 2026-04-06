@@ -1,5 +1,5 @@
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 DIR_NAME = "logs"
 FILE_NAME_OF_BASE = "app.log"
@@ -31,7 +31,9 @@ def find_project_root(path: Path, count: int = 0) -> Path:
 
     # 終了判定
     if count >= 99:
-        raise FileNotFoundError("プロジェクトルートが発見できません（探索上限到達）。")
+        raise FileNotFoundError(
+            "プロジェクトルートが発見できません（探索上限到達）。"
+        )
 
     if path == path.parent:
         raise FileNotFoundError(
@@ -49,7 +51,9 @@ def _ensure_dirpath(root_path: Path, dirname: str) -> Path:
         raise ValueError(f"OSErrorが発生しました: {dirname}") from e
 
     except RuntimeError as e:
-        raise ValueError(f"RuntimeError が発生しました: {dirname}") from e
+        raise ValueError(
+            f"RuntimeError が発生しました: {dirname}"
+        ) from e
 
     dirpath.mkdir(parents=True, exist_ok=True)
 
@@ -60,5 +64,5 @@ def _ensure_filename(basename: str) -> str:
     if basename.count(".") != 1:
         raise ValueError("basenameは'.'を一つだけ含んでください。")
 
-    stem, extension = basename.split(".")
+    (stem, extension) = basename.split(".")
     return f"{stem}-{datetime.now():%Y%m%d}.{extension}"
