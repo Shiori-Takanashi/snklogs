@@ -35,11 +35,10 @@ def test_configure_logging_outputs_correctly(
     # -------------------------------------------------------------------------
     # 3. 検証 (Assert)
     # -------------------------------------------------------------------------
+
     # [検証A: コンソール(ストリーム)出力の検証]
-    # capsys.readouterr() で、ここまでに標準出力・標準エラーに出力された内容を取得
     captured = capsys.readouterr()
 
-    # StreamHandlerはデフォルトで sys.stderr に出力するため、captured.err を確認する
     assert test_message in captured.err, (
         "コンソールにメッセージが出力されていません"
     )
