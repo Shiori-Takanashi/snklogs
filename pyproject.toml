@@ -21,6 +21,7 @@ dev = [
     "mypy>=1.20.0",
     "pre-commit>=4.5.1",
     "pytest>=9.0.2",
+    "pytest-html>=4.2.0",
     "ruff>=0.15.8",
 ]
 
@@ -55,6 +56,11 @@ ignore_missing_imports = true
 cache_dir = ".ci_cache/.pytest_cache"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "-v -s -ra --strict-markers --durations=5"
-log_cli = true
-log_cli_level = "INFO"
+addopts = """
+    -ra
+    --junitxml=.ci_cache/.pytest_reports/report.xml
+    --html=.ci_cache/.pytest_reports/report.html
+    --self-contained-html
+    --strict-markers
+"""
+log_cli = false

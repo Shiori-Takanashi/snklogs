@@ -28,3 +28,7 @@ logs/*.log
 .ci_cache
 .docs/
 .tree/
+
+.ci_cache/
+!.ci_cache/.pytest_reports/
+!.ci_cache/.pytest_reports/.gitkeep
