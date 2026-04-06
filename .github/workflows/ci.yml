@@ -7,18 +7,24 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # レポートをGitHub上に書き込むための権限設定
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.14"
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
 
@@ -31,5 +37,24 @@ jobs:
       - name: Type check (mypy)
         run: uv run mypy --ignore-missing-imports src tests
 
-      - name: Run tests (pytest)
-        run: uv run pytest
+      - name: Run tests and generate reports
+        # カバレッジの出力もここに追加
+        run: |
+          mkdir -p .ci_cache/.pytest_reports
+          uv run pytest \
+            --junitxml=.ci_cache/.pytest_reports/report.xml \
+            --cov=snklogs \
+            --cov-report=xml
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v5
+        if: always() # テストが落ちた場合でもレポートを出力する
+        with:
+          report_paths: ".ci_cache/.pytest_reports/report.xml"
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: coverage-xml
+          path: coverage.xml

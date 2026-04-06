@@ -21,6 +21,7 @@ dev = [
     "mypy>=1.20.0",
     "pre-commit>=4.5.1",
     "pytest>=9.0.2",
+    "pytest-cov>=7.1.0",
     "ruff>=0.15.8",
 ]
 
@@ -55,6 +56,5 @@ ignore_missing_imports = true
 cache_dir = ".ci_cache/.pytest_cache"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "-ra --strict-markers --durations=5"
-log_cli = true
-log_cli_level = "INFO"
+addopts = "-ra --strict-markers"
+log_cli = false
