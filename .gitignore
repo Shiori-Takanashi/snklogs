@@ -36,3 +36,4 @@ logs/*.log
 
 # 3. その中の .gitkeep ファイルを無視対象から外す
 !.ci_cache/.pytest_reports/.gitkeep
+.ci_cache/.pytest_reports/report.*
