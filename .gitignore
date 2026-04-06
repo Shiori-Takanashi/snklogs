@@ -28,12 +28,5 @@ logs/*.log
 .docs/
 .tree/
 
-# 1. .ci_cache の「中身」をすべて無視（ディレクトリ自体は無視しない）
-.ci_cache/*
 
-# 2. .pytest_reports ディレクトリを無視対象から外す
-!.ci_cache/.pytest_reports/
-
-# 3. その中の .gitkeep ファイルを無視対象から外す
-!.ci_cache/.pytest_reports/.gitkeep
-.ci_cache/.pytest_reports/report.*
+.ci_cache

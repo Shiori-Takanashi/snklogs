@@ -56,11 +56,5 @@ ignore_missing_imports = true
 cache_dir = ".ci_cache/.pytest_cache"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = """
-    -ra
-    --junitxml=.ci_cache/.pytest_reports/report.xml
-    --html=.ci_cache/.pytest_reports/report.html
-    --self-contained-html
-    --strict-markers
-"""
+addopts = "-ra --strict-markers"
 log_cli = false
