@@ -25,7 +25,6 @@ htmlcov/
 # Runtime logs
 logs/
 logs/*.log
-.ci_cache
 .docs/
 .tree/
 
