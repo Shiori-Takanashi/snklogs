@@ -32,7 +32,7 @@ target-version = "py312"
 line-length = 80
 
 [tool.ruff.format]
-skip-magic-trailing-comma = true
+skip-magic-trailing-comma = false
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]

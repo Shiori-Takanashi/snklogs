@@ -4,9 +4,7 @@
 from logging import FileHandler, Logger, StreamHandler
 from pathlib import Path
 
-
-SH_NAME = "stream-h"
-FH_NAME = "file-h"
+from ..settings.consts import FH_NAME, SH_NAME
 
 
 def build_stream_handler(

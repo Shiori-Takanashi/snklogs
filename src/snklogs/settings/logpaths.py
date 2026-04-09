@@ -1,12 +1,8 @@
 # snklogs/src/snklogs/settings/logpaths.py
-
-
 from datetime import datetime
 from pathlib import Path
 
-
-DIR_NAME = "logs"
-FILE_NAME_OF_BASE = "app.log"
+from ..settings.consts import DIR_NAME, FILE_NAME_OF_BASE
 
 
 def build_filepath(
