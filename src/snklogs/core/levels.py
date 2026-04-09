@@ -1,4 +1,5 @@
 # snklogs/src/snklogs/core/levels.py
+
 import logging
 from typing import Literal
 

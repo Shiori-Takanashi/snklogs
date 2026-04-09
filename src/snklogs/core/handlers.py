@@ -1,6 +1,5 @@
 # snklogs/src/snklogs/core/handlers.py
 
-
 from logging import FileHandler, Logger, StreamHandler
 from pathlib import Path
 

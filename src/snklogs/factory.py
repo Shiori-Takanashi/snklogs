@@ -1,6 +1,5 @@
 # snklogs/src/snklogs/factory.py
 
-
 import logging
 
 from .core.formatters import build_file_formatter, build_stream_formatter

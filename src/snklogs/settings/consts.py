@@ -1,4 +1,4 @@
-# snklogs/src/snklogs/settings/config.py
+# snklogs/src/snklogs/settings/consts.py
 
 STREAM_LEVEL = "INFO"
 FILE_LEVEL = "DEBUG"

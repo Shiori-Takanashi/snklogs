@@ -1,6 +1,5 @@
 # snklogs/src/snklogs/core/formatters.py
 
-
 from logging import Formatter
 
 from ..settings.consts import FILE_FMT, STREAM_FMT
