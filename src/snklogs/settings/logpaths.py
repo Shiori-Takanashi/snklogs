@@ -3,7 +3,7 @@
 from datetime import datetime
 from pathlib import Path
 
-from ..settings.consts import DIR_NAME, FILE_NAME_OF_BASE
+from ..settings.constants import DIR_NAME, FILE_NAME_OF_BASE
 
 
 def build_filepath(
@@ -13,8 +13,6 @@ def build_filepath(
     dirpath = _ensure_dirpath(root_path, dirname)
     filename = _ensure_filename(filename_of_base)
     filepath = dirpath / filename
-    with open(filepath, "w", encoding="utf-8"):
-        pass
     return filepath
 
 
@@ -59,9 +57,9 @@ def _ensure_dirpath(root_path: Path, dirname: str) -> Path:
     return dirpath
 
 
-def _ensure_filename(basename: str) -> str:
-    if basename.count(".") != 1:
-        raise ValueError("basenameは'.'を一つだけ含んでください。")
+def _ensure_filename(filename_of_base: str) -> str:
+    if filename_of_base.count(".") != 1:
+        raise ValueError("filename_of_baseは'.'を一つだけ含んでください。")
 
-    (stem, extension) = basename.split(".")
+    (stem, extension) = filename_of_base.split(".")
     return f"{stem}-{datetime.now():%Y%m%d}.{extension}"

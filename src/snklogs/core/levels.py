@@ -3,7 +3,7 @@
 import logging
 from typing import Literal
 
-from ..settings.consts import FILE_LEVEL, STREAM_LEVEL
+from ..settings.constants import FILE_LEVEL, STREAM_LEVEL
 
 
 LogLevelStr = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]

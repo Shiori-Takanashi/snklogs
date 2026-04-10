@@ -29,4 +29,4 @@ logs/*.log
 .tree/
 
 tools/
-.ci_cache
+.ci_cache/

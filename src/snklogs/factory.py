@@ -23,3 +23,14 @@ def configure_logging(logger_name: str) -> None:
     fh.setFormatter(build_file_formatter())
     fh.setLevel(build_file_level())
     logger.addHandler(fh)
+
+
+def main() -> None:
+    logger_name = "snklogger"
+    configure_logging(logger_name)
+    logger = logging.getLogger(logger_name)
+    logger.info("Wellcome to snklogs.")
+
+
+if __name__ == "__main__":
+    main()

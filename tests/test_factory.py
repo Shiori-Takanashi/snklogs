@@ -1,3 +1,5 @@
+# snklogs/tests/test_factory.py
+
 import logging
 from pathlib import Path
 
@@ -9,7 +11,7 @@ from snklogs.factory import configure_logging
 def test_configure_logging_outputs_correctly(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    capsys: pytest.CaptureFixture,  # caplog から capsys に変更
+    capsys: pytest.CaptureFixture,
 ):
     # -------------------------------------------------------------------------
     # 1. 準備 (Arrange)
