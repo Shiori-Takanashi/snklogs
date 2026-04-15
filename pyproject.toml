@@ -25,24 +25,28 @@ dev = [
     "ruff>=0.15.8",
 ]
 
+
 [tool.ruff]
 cache-dir = ".ci_cache/.ruff_cache"
 target-version = "py312"
 line-length = 80
 
-[tool.ruff.format]
-skip-magic-trailing-comma = false
+format.skip-magic-trailing-comma = false
 
-[tool.ruff.lint]
-select = ["E", "F", "I", "B", "UP"]
-ignore = ["E501"]
+lint.select = ["E", "F", "I", "B", "UP"]
+lint.ignore = ["E501"]
 
-[tool.ruff.lint.isort]
-force-single-line = false
-lines-after-imports = 2
-section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
-order-by-type = true
-known-first-party = ["snklogs"]
+lint.isort.force-single-line = false
+lint.isort.lines-after-imports = 2
+lint.isort.section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder"
+]
+lint.isort.order-by-type = true
+lint.isort.known-first-party = ["snklogs"]
 
 [tool.mypy]
 cache_dir = ".ci_cache/.mypy_cache"
@@ -50,7 +54,7 @@ files = ["src", "tests"]
 warn_return_any = true
 warn_unused_configs = true
 check_untyped_defs = true
-ignore_missing_imports = true
+ignore_missing_imports = false
 
 [tool.pytest.ini_options]
 cache_dir = ".ci_cache/.pytest_cache"
