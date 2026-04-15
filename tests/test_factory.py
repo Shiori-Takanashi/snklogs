@@ -20,7 +20,7 @@ def test_configure_logging_outputs_correctly(
         return tmp_path
 
     monkeypatch.setattr(
-        "snklogs.settings.logpaths.find_project_root", mock_find_project_root
+        "snklogs.settings.root.find_project_root", mock_find_project_root
     )
 
     logger_name = "test_logger"
