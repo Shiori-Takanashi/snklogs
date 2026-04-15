@@ -1,40 +1,32 @@
 # snklogs/src/snklogs/core/handlers.py
 
-from logging import FileHandler, Logger, StreamHandler
+from logging import FileHandler, Handler, StreamHandler
 from pathlib import Path
 
 from ..settings.constants import FH_NAME, SH_NAME
 
 
-def build_stream_handler(
-    logger: Logger, sh_name: str = SH_NAME
-) -> StreamHandler:
-    target_handlers = []
-    for h in logger.handlers:
-        if (getattr(h, "name", None) == sh_name) and (type(h) is StreamHandler):
-            target_handlers.append(h)
+def has_sh_name(h: Handler, sh_name: str = SH_NAME) -> bool:
+    if (getattr(h, "name", None) == sh_name) and (type(h) is StreamHandler):
+        return True
+    else:
+        return False
 
-    for h in target_handlers:
-        logger.removeHandler(h)
-        h.close()
 
+def build_stream_handler(sh_name: str = SH_NAME) -> StreamHandler:
     sh = StreamHandler()
     sh.set_name(sh_name)
     return sh
 
 
-def build_file_handler(
-    logger: Logger, filepath: Path, fh_name: str = FH_NAME
-) -> FileHandler:
-    target_handlers = []
-    for h in logger.handlers:
-        if (getattr(h, "name", None) == fh_name) and (type(h) is FileHandler):
-            target_handlers.append(h)
+def has_fh_name(h: Handler, fh_name: str = FH_NAME) -> bool:
+    if (getattr(h, "name", None) == fh_name) and (type(h) is FileHandler):
+        return True
+    else:
+        return False
 
-    for h in target_handlers:
-        logger.removeHandler(h)
-        h.close()
 
+def build_file_handler(filepath: Path, fh_name: str = FH_NAME) -> FileHandler:
     fh = FileHandler(filepath, encoding="utf-8")
     fh.set_name(fh_name)
     return fh

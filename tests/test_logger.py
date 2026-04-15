@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from snklogs.factory import configure_logging
+from snklogs.logger import configure_logging
 
 
 def test_configure_logging_outputs_correctly(
