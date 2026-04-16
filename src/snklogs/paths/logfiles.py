@@ -1,7 +1,9 @@
+# snklogs/src/snklogs/paths/logfiles.py
+
 from datetime import datetime
 from pathlib import Path
 
-from ..settings.constants import DIR_NAME, FILE_NAME_OF_BASE
+from ..config.constants import DIR_NAME, FILE_NAME_OF_BASE
 
 
 def build_filepath(
@@ -9,19 +11,22 @@ def build_filepath(
     filename_of_base: str | None = None,
     dirname: str | None = None,
     dirnames: tuple[str, ...] | None = None,
+    count: int | None = None,
 ) -> Path:
 
     # ----------------------------------
     # 1. ファイル名についての処理
     # ----------------------------------
+    if count is None:
+        count = 1
 
     # True -> Use Argument
     if filename_of_base is not None:
-        filename = _ensure_filename_with_stamp(filename_of_base)
+        filename = _ensure_filename_with_stamp(filename_of_base, count=count)
 
     # False -> Use Default
     else:
-        filename = _ensure_filename_with_stamp(FILE_NAME_OF_BASE)
+        filename = _ensure_filename_with_stamp(FILE_NAME_OF_BASE, count=count)
 
     # ----------------------------------
     # 2. ディレクトリについての処理
@@ -82,7 +87,7 @@ def _ensure_dirpath_from_dirnames(
         raise
 
 
-def _ensure_filename_with_stamp(filename_of_base: str) -> str:
+def _ensure_filename_with_stamp(filename_of_base: str, count: int) -> str:
     try:
         p = Path(filename_of_base)
     except TypeError:
@@ -98,4 +103,4 @@ def _ensure_filename_with_stamp(filename_of_base: str) -> str:
     if p.suffix == "":
         raise ValueError(f"{msg}: {p.suffix}")
 
-    return f"{p.stem}-{datetime.now():%Y%m%d}{p.suffix}"
+    return f"{p.stem}-{datetime.now():%Y%m%d}-{str(count).zfill(2)}{p.suffix}"

@@ -1,3 +1,5 @@
+# snklogs/src/snklogs/paths/root.py
+
 from pathlib import Path
 
 
@@ -30,5 +32,5 @@ def find_project_root(
     if path == path.parent:
         raise FileNotFoundError("プロジェクトルートが発見できません(root到達)")
 
-    # 【重要】 return をつけて結果を上の階層に返す
+    # return をつけて結果を上の階層に返す
     return find_project_root(path.parent, count + 1)

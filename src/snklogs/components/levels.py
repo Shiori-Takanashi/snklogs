@@ -1,12 +1,8 @@
-# snklogs/src/snklogs/core/levels.py
+# snklogs/src/snklogs/components/levels.py
 
 import logging
-from typing import Literal
 
-from ..settings.constants import FILE_LEVEL, STREAM_LEVEL
-
-
-LogLevelStr = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+from ..config.constants import FILE_LEVEL, STREAM_LEVEL
 
 
 def build_stream_level(level_name: str = STREAM_LEVEL) -> int:

@@ -1,11 +1,12 @@
-# snklogs/tests/test_factory.py
+# snklogs/tests/test_logger.py
+
 
 import logging
 from pathlib import Path
 
 import pytest
 
-from snklogs.logger import configure_logging
+from snklogs.loggers import configure_logging
 
 
 def test_configure_logging_outputs_correctly(
@@ -20,7 +21,7 @@ def test_configure_logging_outputs_correctly(
         return tmp_path
 
     monkeypatch.setattr(
-        "snklogs.settings.root.find_project_root", mock_find_project_root
+        "snklogs.paths.root.find_project_root", mock_find_project_root
     )
 
     logger_name = "test_logger"

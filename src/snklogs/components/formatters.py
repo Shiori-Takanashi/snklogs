@@ -1,8 +1,8 @@
-# snklogs/src/snklogs/core/formatters.py
+# snklogs/src/snklogs/components/formatters.py
 
 from logging import Formatter
 
-from ..settings.constants import (
+from ..config.constants import (
     FILE_DATE_FMT,
     FILE_FMT,
     STREAM_DATE_FMT,
