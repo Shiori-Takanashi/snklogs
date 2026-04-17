@@ -5,11 +5,11 @@ import logging
 from ..config.constants import FILE_LEVEL, STREAM_LEVEL
 
 
-def build_stream_level(level_name: str = STREAM_LEVEL) -> int:
+def build_level_of_sh_level(level_name: str = STREAM_LEVEL) -> int:
     return _resolve_level_name(level_name)
 
 
-def build_file_level(level_name: str = FILE_LEVEL) -> int:
+def build_level_of_fh_with_ts(level_name: str = FILE_LEVEL) -> int:
     return _resolve_level_name(level_name)
 
 

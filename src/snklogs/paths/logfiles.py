@@ -18,7 +18,7 @@ def build_filepath(
     # 1. ファイル名についての処理
     # ----------------------------------
     if count is None:
-        count = 1
+        count = 0
 
     # True -> Use Argument
     if filename_of_base is not None:

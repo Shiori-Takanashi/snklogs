@@ -6,12 +6,15 @@ from snklogs.components.filters import CustomLevelFilter
 
 from .components.formatters import build_file_formatter, build_stream_formatter
 from .components.handlers import (
-    build_file_handler,
+    build_file_handler_with_ts,
     build_stream_handler,
-    pick_provide_file_handlers,
+    pick_provide_file_handler_with_tss,
     pick_provide_stream_handlers,
 )
-from .components.levels import build_file_level, build_stream_level
+from .components.levels import (
+    build_level_of_fh_with_ts,
+    build_level_of_sh_level,
+)
 from .paths.logfiles import build_filepath
 from .paths.root import find_project_root
 
@@ -29,18 +32,20 @@ def configure_logging(logger_name: str) -> None:
 
     sh = build_stream_handler()
     sh.setFormatter(build_stream_formatter())
-    sh.setLevel(build_stream_level())
+    sh.setLevel(build_level_of_sh_level())
+
+    logger.addFilter(CustomLevelFilter())
     logger.addHandler(sh)
 
     # FileHandler
-    for h in pick_provide_file_handlers(logger.handlers):
+    for h in pick_provide_file_handler_with_tss(logger.handlers):
         logger.removeHandler(h)
         h.close()
 
     fp = build_filepath(find_project_root())
-    fh = build_file_handler(fp)
+    fh = build_file_handler_with_ts(fp)
     fh.setFormatter(build_file_formatter())
-    fh.setLevel(build_file_level())
+    fh.setLevel(build_level_of_fh_with_ts())
 
     logger.addFilter(CustomLevelFilter())
     logger.addHandler(fh)

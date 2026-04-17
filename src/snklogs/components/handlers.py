@@ -3,7 +3,7 @@
 from logging import FileHandler, Handler, StreamHandler
 from pathlib import Path
 
-from ..config.constants import FH_NAME, SH_NAME
+from ..config.constants import FHT_NAME, SH_NAME
 
 
 def pick_provide_stream_handlers(
@@ -16,12 +16,12 @@ def pick_provide_stream_handlers(
     return results
 
 
-def pick_provide_file_handlers(
-    hs: list[Handler], fh_name: str = FH_NAME
+def pick_provide_file_handler_with_tss(
+    hs: list[Handler], fht_name: str = FHT_NAME
 ) -> list[FileHandler]:
     results = []
     for h in hs:
-        if (getattr(h, "name", None) == fh_name) and (type(h) is FileHandler):
+        if (getattr(h, "name", None) == fht_name) and (type(h) is FileHandler):
             results.append(h)
     return results
 
@@ -32,7 +32,9 @@ def build_stream_handler(sh_name: str = SH_NAME) -> StreamHandler:
     return sh
 
 
-def build_file_handler(filepath: Path, fh_name: str = FH_NAME) -> FileHandler:
+def build_file_handler_with_ts(
+    filepath: Path, fht_name: str = FHT_NAME
+) -> FileHandler:
     fh = FileHandler(filepath, encoding="utf-8")
-    fh.set_name(fh_name)
+    fh.set_name(fht_name)
     return fh
